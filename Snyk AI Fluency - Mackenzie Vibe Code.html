@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snyk AI Trust Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F0F2B; /* Dominant Background: Dark Blue / Deep Purple */
+            color: #FFFFFF; /* Primary Text: White */
+        }
+        /* Custom styles for specific elements if needed beyond Tailwind */
+        .header-bg {
+            background-color: #0F0F2B;
+        }
+        .accent-text {
+            color: #00FFFF; /* Accent/Highlight Text & Links: Light Blue / Teal */
+        }
+        .cta-button {
+            background-color: #FF00FF; /* Call-to-Action Buttons/Graphics Accents: Pink / Magenta */
+            color: #FFFFFF;
+        }
+        .table-header-bg {
+            background-color: #0F0F2B; /* Ensure table headers have the main background */
+            color: #00FFFF; /* Table Headers: Light Blue / Teal */
+        }
+        .table-row-bg {
+            background-color: #0F0F2B; /* Table Content: White (text on dark background) */
+        }
+        /* Modal specific styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #1a1a3a; /* Slightly lighter dark background for content */
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            animation-name: animatetop;
+            animation-duration: 0.4s
+        }
+        @keyframes animatetop {
+            from {top: -300px; opacity: 0}
+            to {top: 0; opacity: 1}
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #FF00FF; /* Pink spinner */
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #suggestionOutput a {
+            color: #00FFFF; /* Apply accent color to links in suggestion output */
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- HEADER SECTION -->
+    <header class="header-bg py-8 md:py-12 px-4 sm:px-6 lg:px-8 text-center rounded-b-lg shadow-lg">
+        <div class="max-w-7xl mx-auto">
+            <!-- SNYK LOGO - Placeholder -->
+            <div class="mb-6">
+                <svg class="h-16 mx-auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM13 17H11V7H13V17Z" fill="#FFFFFF"/>
+                </svg>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">Snyk AI Trust Platform</h1>
+            <p class="text-lg md:text-xl text-white mb-8">Build fast and stay secure with AI Trust.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#" class="cta-button font-semibold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105">Start free</a>
+                <a href="#" class="cta-button font-semibold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 flex items-center justify-center">
+                    Book a live demo
+                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT SECTION -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Empowering Secure AI Innovation.</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Discover Your AI Security Journey with Snyk.</h2>
+            <p class="text-lg text-white leading-relaxed max-w-3xl mx-auto">
+                AI is unlocking exciting possibilities, bringing both incredible potential and new security considerations. As AI developers embrace GenAI coding assistants, agents, and deliver innovative AI applications, the Snyk AI Trust Platform helps teams develop quickly while maintaining security in an AI-enabled landscape. This approach aims to streamline security efforts and enhance policy and governance efficiency.
+            </p>
+        </div>
+
+        <!-- Key Pillars Section -->
+        <h3 class="text-2xl md:text-3xl font-bold text-white text-center mb-10">Key Pillars for AI Trust</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <!-- Column 1 -->
+            <div class="bg-[#0F0F2B] p-6 rounded-lg shadow-lg border border-gray-700">
+                <h4 class="text-xl font-semibold accent-text mb-3">Secure AI-generated code</h4>
+                <p class="text-white leading-relaxed">
+                    Snyk's AI-ready engines provide comprehensive coverage and unmatched speed and accuracy across the SDLC, crucial for managing rapid code velocity.
+                </p>
+            </div>
+            <!-- Column 2 -->
+            <div class="bg-[#0F0F2B] p-6 rounded-lg shadow-lg border border-gray-700">
+                <h4 class="text-xl font-semibold accent-text mb-3">Accelerate Prevention and Remediation</h4>
+                <p class="text-white leading-relaxed">
+                    Leverage AI-powered visibility, intelligent prioritization, and tailored security policies to enable proactive prevention and rapid remediation of threats.
+                </p>
+            </div>
+            <!-- Column 3 -->
+            <div class="bg-[#0F0F2B] p-6 rounded-lg shadow-lg border border-gray-700">
+                <h4 class="text-xl font-semibold accent-text mb-3">Empower Developers with AI Security Skills</h4>
+                <p class="text-white leading-relaxed">
+                    The AI Trust Platform is designed to be developer-first, fostering security knowledge and upskilling as developers transition to LLM engineering, AI code analysis, and dev-coaching.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI FLUENCY CHART SECTION -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-[#0F0F2B]">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-4">Assess Your Team's AI Security Fluency with Snyk</h2>
+            <p class="text-lg text-white text-center mb-10">Explore how Snyk supports elevating AI security across your organization:</p>
+
+            <div class="overflow-x-auto rounded-lg shadow-xl border border-gray-700 mb-10">
+                <table class="min-w-full divide-y divide-gray-700">
+                    <thead class="table-header-bg">
+                        <tr>
+                            <th scope="col" class="py-3 px-4 sm:px-6 text-left text-xs font-medium uppercase tracking-wider rounded-tl-lg">Fluency Level & Snyk Integration</th>
+                            <th scope="col" class="py-3 px-4 sm:px-6 text-left text-xs font-medium uppercase tracking-wider">Nascent</th>
+                            <th scope="col" class="py-3 px-4 sm:px-6 text-left text-xs font-medium uppercase tracking-wider">Developing</th>
+                            <th scope="col" class="py-3 px-4 sm:px-6 text-left text-xs font-medium uppercase tracking-wider">Proficient</th>
+                            <th scope="col" class="py-3 px-4 sm:px-6 text-left text-xs font-medium uppercase tracking-wider">Pioneering</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-800">
+                        <!-- Developer Row -->
+                        <tr class="table-row-bg">
+                            <td class="py-4 px-4 sm:px-6 whitespace-nowrap font-medium text-white">Developer <br class="md:hidden"> Security Posture</td>
+                            <td class="py-4 px-4 sm:px-6 text-white text-sm">AI-generated code/models are deployed with limited formal security review. There might be low awareness of AI/ML-specific vulnerabilities or prompt risks.</td>
+                            <td class="py-4 px-4 sm:px-6 text-white text-sm">Developers show awareness of general security risks in AI-generated code. Basic static application security testing (SAST) like Snyk Code may be used for AI-assisted code. There's a growing understanding of securing open-source dependencies, such as using Snyk Open Source for ML libraries.</td>
+                            <td class="py-4 px-4 sm:px-6 text-white text-sm">Teams actively integrate Snyk Code for scanning AI-generated code. Snyk Open Source is integrated into CI/CD pipelines for ML framework dependencies. Snyk Container/IaC is leveraged to help secure AI model deployment environments, and compliance checks for AI-related assets are beginning.</td>
+                            <td class="py-4 px-4 sm:px-6 text-white text-sm">Comprehensive AI security posture management is automated using Snyk AppRisk for discovery and code-to-cloud workflows. Advanced AI/ML threats (e.g., data poisoning, model inversion) are proactively identified and mitigated with Snyk's full suite. Custom security and compliance policies for AI are defined and enforced, driving organizational best practices.</td>
+                        </tr>
+                        <!-- AppSec Professional Row -->
+                        <tr class="table-row-bg">
+                            <td class="py-4 px-4 sm:px-6 whitespace-nowrap font-medium text-white">AppSec Professional <br class="md:hidden"> Security Posture</td>
+                            <td class="py-4 px-4 sm:px-6 text-white text-sm">A defined AI security program or ownership might be absent. AI-related security incidents are often addressed reactively.</td>
+                            <td class="py-4 px-4 sm:px-6 text-white text-sm">AI/ML components within the application landscape are starting to be identified. Preliminary risk assessments for AI/ML use cases are conducted, and different AI security tools and methodologies are being evaluated.</td>
+                            <td class="py-4 px-4 sm:px-6 text-white text-sm">Snyk is integrated into AI/ML development and deployment pipelines for continuous security scanning. Security standards and best practices for AI-generated code and models are being defined and enforced. Collaboration with development teams on AI security training and awareness is increasing.</td>
+                            <td class="py-4 px-4 sm:px-6 text-white text-sm">A dedicated AI security program with clear roles and responsibilities is established. Snyk's full platform is leveraged for continuous monitoring, advanced threat detection (e.g., for model manipulation), and comprehensive visibility across AI assets. Secure AI adoption is driven across the entire organization, utilizing Snyk AppRisk for discovery and code-to-cloud workflows.</td>
+                        </tr>
+                        <!-- CISO / Security Leader Row -->
+                        <tr class="table-row-bg">
+                            <td class="py-4 px-4 sm:px-6 whitespace-nowrap font-medium text-white">CISO / Security Leader <br class="md:hidden"> Security Posture</td>
+                            <td class="py-4 px-4 sm:px-6 text-white text-sm">Security implications of AI/ML adoption may not be fully recognized, with minimal budget or resources allocated for AI security initiatives. AI security might be seen as a niche or developer-specific concern.</td>
+                            <td class="py-4 px-4 sm:px-6 text-white text-sm">AI/ML is acknowledged as a significant and expanding attack surface. Initial budget and resources are being considered for AI security exploration, and requests for basic reports on AI-related security posture are beginning.</td>
+                            <td class="py-4 px-4 sm:px-6 text-white text-sm">AI security initiatives are being championed and funded across the enterprise. Mandates Snyk adoption for all AI-related projects and pipelines. High-level AI security policies, KPIs, and risk metrics are being established, with a focus on understanding Snyk's strategic reporting capabilities for AI risks, including insights from Snyk AppRisk.</td>
+                            <td class="py-4 px-4 sm:px-6 text-white text-sm">AI security is deeply embedded into the overall enterprise risk management framework and strategic planning. Snyk insights (including those from Snyk AppRisk) are leveraged for proactive identification of emerging AI security threats and for making informed strategic security decisions. A culture of secure AI innovation is fostered, establishing AI security as a competitive differentiator.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- New AI Security Fluency Self-Assessment Button -->
+            <div class="text-center mt-12">
+                <button id="openModalBtn" class="cta-button font-semibold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105">
+                    ✨ Discover Your Next Steps in AI Security ✨
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Modal -->
+    <div id="aiFluencyModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button" id="closeModalBtn">&times;</span>
+            <h3 class="text-2xl font-bold text-white mb-6 text-center">Your AI Security Journey</h3>
+
+            <div class="mb-4">
+                <label for="roleSelect" class="block text-white text-sm font-bold mb-2">Select Your Role:</label>
+                <select id="roleSelect" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200">
+                    <option value="">-- Choose a Role --</option>
+                    <option value="Developer">Developer</option>
+                    <option value="AppSec Professional">AppSec Professional</option>
+                    <option value="CISO / Security Leader">CISO / Security Leader</option>
+                </select>
+            </div>
+
+            <div class="mb-6">
+                <label for="fluencySelect" class="block text-white text-sm font-bold mb-2">Select Your Current Fluency Level:</label>
+                <select id="fluencySelect" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-200">
+                    <option value="">-- Choose a Level --</option>
+                    <option value="Nascent">Nascent</option>
+                    <option value="Developing">Developing</option>
+                    <option value="Proficient">Proficient</option>
+                    <option value="Pioneering">Pioneering</option>
+                </select>
+            </div>
+
+            <div class="flex justify-center mb-6">
+                <button id="getSuggestionBtn" class="cta-button font-semibold py-2 px-6 rounded-full shadow-md transition-transform transform hover:scale-105">
+                    Get Suggestion
+                </button>
+            </div>
+
+            <div id="loadingIndicator" class="flex justify-center my-4 hidden">
+                <div class="loading-spinner"></div>
+            </div>
+
+            <div id="suggestionOutput" class="text-white bg-[#0F0F2B] p-4 rounded-lg border border-gray-700 hidden">
+                <p class="text-sm italic"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        const modal = document.getElementById("aiFluencyModal");
+        const openModalBtn = document.getElementById("openModalBtn");
+        const closeModalBtn = document.getElementById("closeModalBtn");
+        const getSuggestionBtn = document.getElementById("getSuggestionBtn");
+        const roleSelect = document.getElementById("roleSelect");
+        const fluencySelect = document.getElementById("fluencySelect");
+        const loadingIndicator = document.getElementById("loadingIndicator");
+        const suggestionOutput = document.getElementById("suggestionOutput");
+
+        // Function to open the modal
+        openModalBtn.onclick = function() {
+            modal.style.display = "flex"; // Use flex to center
+            suggestionOutput.classList.add('hidden'); // Hide previous suggestion
+            suggestionOutput.querySelector('p').textContent = ''; // Clear previous text
+            loadingIndicator.classList.add('hidden'); // Hide loading
+            roleSelect.value = ""; // Reset selections
+            fluencySelect.value = ""; // Reset selections
+        }
+
+        // Function to close the modal
+        closeModalBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Close the modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Handle Get Suggestion button click
+        getSuggestionBtn.onclick = async function() {
+            const role = roleSelect.value;
+            const fluency = fluencySelect.value;
+
+            if (!role || !fluency) {
+                suggestionOutput.classList.remove('hidden');
+                suggestionOutput.querySelector('p').textContent = "Please select both a role and a fluency level.";
+                return;
+            }
+
+            loadingIndicator.classList.remove('hidden');
+            suggestionOutput.classList.add('hidden');
+            suggestionOutput.querySelector('p').textContent = ''; // Clear previous content
+
+            // Updated prompt to include illustrative links
+            const prompt = `Given the role '${role}' and the AI Security Fluency Level '${fluency}' as described in a Snyk AI Trust Platform marketing document, provide a concise, actionable suggestion (2-3 sentences) on what steps this individual could take to further enhance their AI security posture or understanding, focusing on a 'discovery and education' tone. As part of the suggestion, include one or two illustrative examples of where they might find more detailed information or tools. Present these examples as clickable links, using generic placeholder URLs (e.g., 'https://snyk.io/learn/ai-security-basics' or 'https://snyk.io/docs/apprisk') but ensure the link text is descriptive of Snyk's offerings related to AI security (e.g., '<a href="https://snyk.io/learn/ai-security-best-practices">Snyk\'s AI Security Best Practices Guide</a>' or '<a href="https://snyk.io/docs/apprisk">documentation on Snyk AppRisk for AI</a>'). Do not explicitly state 'Snyk' in the introductory sentence, but use it within the link text where appropriate for the illustrative links.`;
+
+            try {
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas will automatically provide it in runtime
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    // Use innerHTML to render links
+                    suggestionOutput.querySelector('p').innerHTML = text;
+                    suggestionOutput.classList.remove('hidden');
+                } else {
+                    suggestionOutput.querySelector('p').textContent = "Failed to get a suggestion. Please try again.";
+                    suggestionOutput.classList.remove('hidden');
+                    console.error("Unexpected API response structure:", result);
+                }
+            } catch (error) {
+                suggestionOutput.querySelector('p').textContent = "An error occurred while fetching the suggestion. Please check your network connection.";
+                suggestionOutput.classList.remove('hidden');
+                console.error("Error calling Gemini API:", error);
+            } finally {
+                loadingIndicator.classList.add('hidden');
+            }
+        };
+    </script>
+
+</body>
+</html>
